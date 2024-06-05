@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <div id="im">
+         <h2 id="h">HANGMAN GAME</h2>
+        </div>
+         <div id="cont">
+            <div id="st"></div>
+            <div id="hint"></div>
+            <div id="incor">Incorrect guesses : 0/6</div>
+            <div id="but"></div>
+            <div id="ale"></div>
+         </div>
+    </div>
+    <script>
+        let main=document.getElementById('main')
+        let im=document.getElementById('im')
+        let d=document.createElement('img')
+        d.id="image"
+        d.src='./images/hangman-0.svg'
+        im.appendChild(d)
+        let cont=document.getElementById("cont")
+        let st=document.getElementById('st')
+        let hint=document.getElementById("hint")
+        let but=document.getElementById("but")
+        let incor=document.getElementById('incor')
+        let ale=document.getElementById('ale')
+        let newbut,count=0,f=0,q,len
+        let s=''
+        for(i=0;i<26;i++)
+        {
+            newbut=document.createElement('button')
+            newbut.innerText=String.fromCharCode(i+65)
+            newbut.style.backgroundColor = "#5E63BA"
+            newbut.style.border="none"
+            newbut.style.color="white"
+            newbut.style.borderRadius="4px"
+            newbut.style.padding="10px 12px"
+            newbut.addEventListener('click', createClickListener(newbut));
+             but.appendChild(newbut); // Append the button to the 'but' element
+        }
+
+        function createClickListener(button) {
+        { return function()
+            {   button.disabled=true
+                button.style.backgroundColor = "#8286c9";
+                let letter=button.innerText.toUpperCase(); 
+              if (q.includes(letter))
+               { 
+                for(i=0;i<len;i++)
+                { 
+                   if(q[i]===letter)
+                    {
+                        console.log(letter,"letter")
+                      s=s.substring(0,i)+letter+s.substring(i+1)
+                    }
+                }
+            }
+            else
+            {
+                count=count+1
+                incor.innerText="Incorrect guesses:"+count+String("/6")
+                switch(count)
+                {
+                    case 1:
+                        d.src='./images/hangman-1.svg'
+                        im.appendChild(d)
+                        break;
+                    case 2:
+                        d.src='./images/hangman-2.svg'
+                        im.appendChild(d)
+                        break; 
+                    case 3:
+                        d.src='./images/hangman-3.svg'
+                        im.appendChild(d)
+                        break; 
+                    case 4:
+                        d.src='./images/hangman-4.svg'
+                        im.appendChild(d)
+                        break;
+                    case 5:
+                        d.src='./images/hangman-5.svg'
+                        im.appendChild(d)
+                        break; 
+                    case 6:
+                        d.src='./images/hangman-6.svg'
+                        im.appendChild(d)
+                        console.log("img 6")
+                        setTimeout(()=>
+                        {
+                            customAlert("Game Over",1)
+                        },1000)
+                        break;
+                    default:
+                        console.log("no img")     
+                }
+        
+            }
+            console.log(s)
+            if(s===q)
+            {
+                setTimeout(()=>
+                        {
+                            customAlert("woww!! Correct answer",0)
+                        },1000)
+            }
+            st.innerText=s
+        }
+        };
+    }
+    function start()
+    {
+    let list=[
+    { "umbrella": "Protects from rain" },
+  { "computer": "Electronic device for processing data" },
+  { "mountain": "High landform with steep sides" },
+  { "keyboard": "Input device for typing" },
+  { "library": "Place with books for borrowing"},{ "giraffe": "Tall African mammal" },
+  { "backpack": "Bag carried on the back" },
+  { "airplane": "Aircraft that flies in the sky" },
+  { "telephone": "Device for making calls" },
+  { "calendar": "Organizes days, weeks, months" },
+  {"guitar": "Stringed musical instrument played by plucking or strumming"},
+  {"ocean": "Vast body of saltwater covering much of the Earth's surface"},
+  {"umbrella": "Portable device used for protection from rain or sunlight"},
+  {"bicycle": "Two-wheeled vehicle propelled by pedals"},
+  {"camera": "Device used to capture photographs or record videos"},
+  {"restaurant": "Place where meals are prepared and served to customers"},
+  {"telephone": "Communication device used for voice calls"},
+  {"chocolate": "Sweet food made from roasted and ground cacao seeds"},
+  {"hospital": "Institution providing medical and surgical treatment"},
+  {"dictionary": "Reference book containing words and their meanings"},
+  {"piano": "Musical instrument with a keyboard"},
+  {"airplane": "Powered flying vehicle with fixed wings and engines"},
+  {"rainbow": "Optical and meteorological phenomenon with a spectrum of colors"},
+  { "monster": "Imaginary creature, often frightening" },
+    { "journey": "Travel from one place to another" },
+    { "diamond": "Hard, precious stone" },
+    { "kitchen": "Room for cooking and food preparation" },
+    { "penguin": "Flightless bird found in cold regions" },
+    { "champion": "Winner of a competition" },
+    { "broccoli": "Vegetable with green, flowering heads" },
+    { "treasure": "Valuable objects or money" },
+    { "keyboard": "Input device for computers" }]  
+    let ran=Math.floor(Math.random()*list.length)
+    let ques=Object.keys(list[ran])[0]
+    hint.innerHTML=list[ran][ques]
+    console.log("ques",ques)
+    len=ques.length
+    q=ques.toUpperCase()
+    console.log("question",q)
+    //setting min,max range for random
+    for(i=0;i<len;i++)
+    {
+        s=s+"_"
+    }
+    console.log(s)
+    st.innerText=s.toUpperCase()
+}
+function customAlert(message,t)
+    {
+        ale.innerHTML=""
+        let k=document.createElement('img')
+        k.id="k"
+        k.style.width="50px"
+        k.style.height="50px"
+        if(t==0)
+        {
+        k.src="./images/lost.gif"
+        }
+        else{
+        k.src="./images/victory.gif"
+        }
+        ale.appendChild(k)
+        ale.style.display="block";
+        ale.innerHTML=message;
+        ale.appendChild(document.createElement('br'))
+        let b=document.createElement('button')
+        b.innerText="OK"
+        b.style.border="none"
+        b.style.color="white"
+        b.style.margin="20px"
+        b.style.backgroundColor="#8286c9"
+        ale.appendChild(b)
+        ale.style.padding="30px";
+        b.addEventListener('click',()=>
+        {
+        s=" " 
+        count=0 
+        d.src='./images/hangman-0.svg'  
+        start()
+        for (let i = 0; i < but.children.length; i++) {
+            but.children[i].disabled = false;
+            but.children[i].style.backgroundColor = "#5E63BA" // Enable all buttons
+        }
+        ale.style.display="none";
+        incor.innerText="Incorrect guesses:0/6"
+    })
+    }   
+start()
+
+
+    </script>
+</body>
+</html>

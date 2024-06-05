@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    background: #5E63BA;
+
+}
+
+#main {
+    display: flex;
+    border:none;
+    width: 800px;
+    height: 450px;
+    background-color: rgb(255, 253, 253);
+    border-radius: 30px;
+    padding: 10px;
+}
+
+#d {
+    padding: 20px;
+}
+#incor
+{
+    margin-bottom:25px ;
+}
+#st {
+    font-size: 50px;
+    letter-spacing: 8px;
+    margin-bottom: 25px;
+}
+
+#cont {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#incor {
+    margin-top: 20px;
+}
+
+#but {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    margin: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#ale {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    width:"300px";
+    height:"100px";
+    padding:"30px";
+    box-shadow: 6px 6px 6px rgba(6, 2, 0, 1);
+}
+@media screen and (max-width:700px)
+{
+    #main
+    {
+        width: 250px;
+        height:700px;
+        flex-direction: column;
+        padding-top: 0px;
+    }
+    #st {
+        font-size: 24px;
+        letter-spacing: 8px;
+        margin-bottom: 25px;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    }
+    #image
+    {
+        width:130px;
+    }
+    #im{
+        width:300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    h2{
+        width:250px;
+    }
+    #ale{
+        width:250px;
+    }
+}
